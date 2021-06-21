@@ -28,24 +28,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (Walker walker in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => walker.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => walker.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NeighborhoodId)
+                @Html.DisplayFor(modelItem => walker.NeighborhoodId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                <img src="@walker.ImageUrl" alt="avatar" />
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=walker.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=walker.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=walker.Id })
             </td>
         </tr>
 }
