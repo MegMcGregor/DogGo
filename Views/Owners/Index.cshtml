@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DogGo.Models.Owner>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NeighborhoodId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach ( Owner owner in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => owner.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => owner.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => owner.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => owner.NeighborhoodId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => owner.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => owner.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=owner.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=owner.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=owner.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
