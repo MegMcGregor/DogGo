@@ -408,3 +408,4 @@ C:\Users\megmc\workspace\DogGo\obj\Debug\net5.0\ref\DogGo.dll
 C:\Users\megmc\workspace\DogGo\obj\Debug\net5.0\DogGo.pdb
 C:\Users\megmc\workspace\DogGo\obj\Debug\net5.0\DogGo.genruntimeconfig.cache
 C:\Users\megmc\workspace\DogGo\obj\Debug\net5.0\Razor\Views\Walkers\Index.cshtml.g.cs
+C:\Users\megmc\workspace\DogGo\obj\Debug\net5.0\Razor\Views\Walkers\Details.cshtml.g.cs
