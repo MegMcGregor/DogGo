@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DogGo.Models
 {
-    public class Owners
+    public class Owner
     {
         public int Id { get; set; }
         public string Email { get; set; }
