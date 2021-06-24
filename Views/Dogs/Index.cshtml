@@ -34,30 +34,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (Dog dog in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => dog.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => dog.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Breed)
+                @Html.DisplayFor(modelItem => dog.Breed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OwnerId)
+                @Html.DisplayFor(modelItem => dog.OwnerId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Notes)
+                @Html.DisplayFor(modelItem => dog.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                @Html.DisplayFor(modelItem => dog.ImageUrl)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=dog.Id }) |x
+                @Html.ActionLink("Details", "Details", new {  id=dog.Id  }) |
+                @Html.ActionLink("Delete", "Delete", new { id=dog.Id  })
             </td>
         </tr>
 }
