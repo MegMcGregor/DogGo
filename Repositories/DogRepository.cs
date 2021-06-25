@@ -75,6 +75,7 @@ namespace DogGo.Repositories
                     cmd.CommandText = @"
                         SELECT Id, [Name], Breed, OwnerId, Notes, ImageUrl
                         FROM Dog
+                        WHERE Id = @id
                     ";
 
                     cmd.Parameters.AddWithValue("@id", id);
@@ -114,13 +115,13 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO (Id, [Name], Breed, OwnerId, Notes, ImageUrl)
+                        INSERT INTO Dog ([Name], Breed, OwnerId, Notes, ImageUrl)
                         OUTPUT INSERTED.ID
-                        VAOLUES (@name, @breen
+                        VALUES (@name, @breed, @ownerId, @notes, @imageUrl);
                     ";
 
                     cmd.Parameters.AddWithValue("@name", dog.Name);
-                    cmd.Parameters.AddWithValue("@OwnerId", dog.Id);
+                    cmd.Parameters.AddWithValue("@OwnerId", dog.OwnerId);
                     cmd.Parameters.AddWithValue("@breed", dog.Breed);
                     if (dog.Notes != null)
                     {
@@ -146,55 +147,69 @@ namespace DogGo.Repositories
             }
         }
 
-        //public void UpdateOwner(Owner owner)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
+        public void UpdateDog(Dog dog)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
 
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                    UPDATE Owner
-        //                    SET 
-        //                        [Name] = @name, 
-        //                        Email = @email, 
-        //                        Address = @address, 
-        //                        Phone = @phone, 
-        //                        NeighborhoodId = @neighborhoodId
-        //                    WHERE Id = @id";
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE Dog
+                            SET 
+                                [Name] = @name, 
+                                Breed = @breed, 
+                                OwnerId = @ownerId, 
+                                Notes = @notes, 
+                                ImageUrl = @imageurl
+                            WHERE Id = @id";
 
-        //            cmd.Parameters.AddWithValue("@name", owner.Name);
-        //            cmd.Parameters.AddWithValue("@email", owner.Email);
-        //            cmd.Parameters.AddWithValue("@address", owner.Address);
-        //            cmd.Parameters.AddWithValue("@phone", owner.Phone);
-        //            cmd.Parameters.AddWithValue("@neighborhoodId", owner.NeighborhoodId);
-        //            cmd.Parameters.AddWithValue("@id", owner.Id);
+                    cmd.Parameters.AddWithValue("@name", dog.Name);
+                    cmd.Parameters.AddWithValue("@breed", dog.Breed);
+                    cmd.Parameters.AddWithValue("@ownerId", dog.OwnerId);
+                    cmd.Parameters.AddWithValue("@id", dog.Id);
+                    if (dog.Notes != null)
+                    {
+                        cmd.Parameters.AddWithValue("@notes", dog.Notes);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@notes", DBNull.Value);
+                    }
+                    if (dog.ImageUrl != null)
+                    {
+                        cmd.Parameters.AddWithValue("@imageurl", dog.ImageUrl);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@imageurl", DBNull.Value);
+                    }
 
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
-        //public void DeleteOwner(int ownerId)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
+        public void DeleteDog(int dogId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
 
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                    DELETE FROM Owner
-        //                    WHERE Id = @id
-        //                ";
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            DELETE FROM Dog
+                            WHERE Id = @id
+                        ";
 
-        //            cmd.Parameters.AddWithValue("@id", ownerId);
+                    cmd.Parameters.AddWithValue("@id", dogId);
 
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 
 }
